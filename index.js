@@ -1,4 +1,6 @@
+'use strict';
 const chalk = require('chalk');
-const log = console.log;
+const print = console.log;
 
-log(chalk.blue.bgYellow.bold('starting the game of life...'));
+const Grid = require('./lib/Grid');
+print(chalk.blue.bgYellow.bold('starting the game of life...'));
