@@ -30,7 +30,7 @@ printer.printGrid();
 var genNum = 0;
 let gameOver = false;
 function gameLoop() {
-  clear();
+  // clear();
   cellNum = grid.calcNextGen();
   gameOver = grid.isGameOver();
   grid.update();
@@ -39,9 +39,10 @@ function gameLoop() {
   printer.printGenNum(genNum);
   printer.printGrid();
   genNum++;
-  if (gameOver) {
-    clearInterval(int);
-  }
+  // if (gameOver) {
+  //   clearInterval(int);
+  // }
 }
 
-var int = setInterval(gameLoop, interval);
+// var int = setInterval(gameLoop, interval);
+gameLoop();
