@@ -3,8 +3,8 @@ const chalk = require('chalk');
 const print = console.log;
 const Printer = require('./lib/Printer');
 const clear = require('clear');
-const size = process.argv[2] ? parseInt(process.argv[2]) : 10;
-const numLiveCells = process.argv[3] ? parseInt(process.argv[3]) : 50;
+const size = process.argv[2] ? parseInt(process.argv[2]) : 30;
+const numLiveCells = process.argv[3] ? parseInt(process.argv[3]) : 300;
 const interval = 0.2 * 1000;
 
 var liveCells = [];
