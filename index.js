@@ -22,7 +22,7 @@ game.init(liveCells);
 let gameOver = false;
 
 function gameLoop() {
-  // printer.clear();
+  printer.clear();
   printer.printStatus(game.cellNum, game.gen);
   printer.printGrid();
   game.calcNextGen();
