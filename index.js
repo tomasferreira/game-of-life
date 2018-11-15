@@ -3,7 +3,7 @@ const Printer = require('./lib/Printer');
 const Game = require('./lib/Game');
 const size = process.argv[2] ? parseInt(process.argv[2]) : 30;
 const numLiveCells = process.argv[3] ? parseInt(process.argv[3]) : 300;
-const interval = 0.6 * 1000;
+const interval = 0.1 * 1000;
 
 var liveCells = [];
 
