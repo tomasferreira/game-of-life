@@ -1,11 +1,9 @@
 'use strict';
-const chalk = require('chalk');
-const print = console.log;
 const Printer = require('./lib/Printer');
-const clear = require('clear');
+const Board = require('./lib/Board');
 const size = process.argv[2] ? parseInt(process.argv[2]) : 30;
 const numLiveCells = process.argv[3] ? parseInt(process.argv[3]) : 300;
-const interval = 0.2 * 1000;
+const interval = 0.6 * 1000;
 
 var liveCells = [];
 
@@ -16,12 +14,11 @@ for (let i = 0; i < numLiveCells; i++) {
   });
 }
 
-const Grid = require('./lib/Grid');
-print(chalk.blue.bgYellow.bold('starting the game of life with ', size * size, ' cells and ', numLiveCells, ' live cells...'));
-let grid = new Grid(size, size);
-grid.init(liveCells);
+let board = new Board(size, size);
+var printer = new Printer(board);
+printer.printStart(size, numLiveCells);
+board.init(liveCells);
 
-var printer = new Printer(grid);
 let cellNum = numLiveCells;
 printer.printCellNum(cellNum);
 printer.printGenNum(0);
@@ -29,20 +26,18 @@ printer.printGrid();
 
 var genNum = 0;
 let gameOver = false;
+
 function gameLoop() {
-  clear();
-  cellNum = grid.calcNextGen();
-  gameOver = grid.isGameOver();
-  grid.update();
-  print(chalk.blue.bgYellow.bold('Game of Life'));
-  printer.printCellNum(cellNum);
-  printer.printGenNum(genNum);
+  printer.clear();
+  board.calcNextGen();
+  gameOver = board.isGameOver();
+  board.update();
+  printer.printStatus(board.cellNum, ++genNum);
   printer.printGrid();
-  genNum++;
+
   if (gameOver) {
     clearInterval(int);
   }
 }
 
 var int = setInterval(gameLoop, interval);
-// gameLoop();
