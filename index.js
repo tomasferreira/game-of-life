@@ -19,21 +19,15 @@ var printer = new Printer(game);
 printer.printStart(size, numLiveCells);
 game.init(liveCells);
 
-let cellNum = numLiveCells;
-printer.printCellNum(cellNum);
-printer.printGenNum(0);
-printer.printGrid();
-
-var genNum = 0;
 let gameOver = false;
 
 function gameLoop() {
-  printer.clear();
+  // printer.clear();
+  printer.printStatus(game.cellNum, game.gen);
+  printer.printGrid();
   game.calcNextGen();
   gameOver = game.isGameOver();
   game.update();
-  printer.printStatus(game.cellNum, ++genNum);
-  printer.printGrid();
 
   if (gameOver) {
     clearInterval(int);
