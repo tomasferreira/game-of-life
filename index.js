@@ -1,6 +1,6 @@
 'use strict';
 const Printer = require('./lib/Printer');
-const Board = require('./lib/Board');
+const Game = require('./lib/Game');
 const size = process.argv[2] ? parseInt(process.argv[2]) : 30;
 const numLiveCells = process.argv[3] ? parseInt(process.argv[3]) : 300;
 const interval = 0.6 * 1000;
@@ -14,10 +14,10 @@ for (let i = 0; i < numLiveCells; i++) {
   });
 }
 
-let board = new Board(size, size);
-var printer = new Printer(board);
+let game = new Game(size, size);
+var printer = new Printer(game);
 printer.printStart(size, numLiveCells);
-board.init(liveCells);
+game.init(liveCells);
 
 let cellNum = numLiveCells;
 printer.printCellNum(cellNum);
@@ -29,10 +29,10 @@ let gameOver = false;
 
 function gameLoop() {
   printer.clear();
-  board.calcNextGen();
-  gameOver = board.isGameOver();
-  board.update();
-  printer.printStatus(board.cellNum, ++genNum);
+  game.calcNextGen();
+  gameOver = game.isGameOver();
+  game.update();
+  printer.printStatus(game.cellNum, ++genNum);
   printer.printGrid();
 
   if (gameOver) {
