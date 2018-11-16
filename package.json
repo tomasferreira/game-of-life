@@ -9,6 +9,7 @@
   "author": "tomas ferreira",
   "license": "ISC",
   "dependencies": {
+    "canvas": "^2.1.0",
     "chalk": "^2.4.1",
     "clear": "^0.1.0"
   }
