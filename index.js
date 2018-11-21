@@ -4,7 +4,7 @@ const Game = require('./lib/Game');
 const w = process.argv[2] ? parseInt(process.argv[2]) : 10;
 const h = process.argv[3] ? parseInt(process.argv[3]) : 10;
 const numLiveCells = process.argv[4] ? parseInt(process.argv[4]) : 20;
-const interval = process.argv[5] ? parseInt(process.argv[5]) : 0.05 * 1000;
+// const interval = process.argv[5] ? parseInt(process.argv[5]) : 0.05 * 1000;
 
 var liveCells = [];
 
@@ -23,7 +23,7 @@ game.init(liveCells);
 // var int = setInterval(gameLoop, interval);
 
 while (game.gen <= 50) {
-  printer.printStatus(game.cellNum, game.gen, game.avg);
+  printer.printStatusInLine(game.cellNum, game.gen, game.avg);
   game.calcNextGen();
   game.update();
 }
