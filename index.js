@@ -20,16 +20,18 @@ var printer = new Printer(game);
 printer.printStart(h * w, numLiveCells);
 game.init(liveCells);
 
-var int = setInterval(gameLoop, interval);
-/*
-while (!game.isGameOver) {
-  gameLoop();
-}
-*/
+// var int = setInterval(gameLoop, interval);
 
+while (game.gen <= 50) {
+  printer.printStatus(game.cellNum, game.gen, game.avg);
+  game.calcNextGen();
+  game.update();
+}
+
+/*
 function gameLoop() {
   printer.clear();
-  printer.printStatus(game.cellNum, game.gen);
+  printer.printStatus(game.cellNum, game.gen, game.avg);
   printer.printGrid();
   game.calcNextGen();
   game.update();
@@ -38,3 +40,9 @@ function gameLoop() {
     printer.printGameOver(game.gen);
   }
 }
+*/
+
+//run 50
+//store result (avg living cells by gen)
+//add 1 to input
+//repeat
