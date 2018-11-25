@@ -10,33 +10,45 @@ const size = w * h;
 var results = [];
 
 for (let i = 0; i <= size; i++) {
+  for (let x = 0; x <= w; x++) {
+    for (let y = 0; y <= h; y++) {
 
-  var game = new Game(w, h);
-  var printer = new Printer(game);
-  let numLiveCells = i;
+      var game = new Game(w, h);
+      var printer = new Printer(game);
+      let numLiveCells = i;
 
-  let liveCells = [];
-  for (let i = 0; i < numLiveCells; i++) {
-    liveCells.push({
-      x: Math.floor(Math.random() * w),
-      y: Math.floor(Math.random() * h)
-    });
+      let liveCells = [];
+      for (let i = 0; i < numLiveCells; i++) {
+        liveCells.push({
+          x: x,
+          y: y
+        });
+      }
+
+      printer.printStart(size, numLiveCells);
+      game.init(liveCells);
+
+      while (game.gen <= totalGen) {
+        // printer.printStatusInLine(game.cellNum, game.gen, game.avg);
+        game.calcNextGen();
+        game.update();
+      }
+      printer.printEnd(game.gen, game.avg);
+      results.push({
+        startingCells: numLiveCells,
+        avg: game.avg
+      });
+    }
   }
-
-  printer.printStart(size, numLiveCells);
-  game.init(liveCells);
-
-  while (game.gen <= totalGen) {
-    // printer.printStatusInLine(game.cellNum, game.gen, game.avg);
-    game.calcNextGen();
-    game.update();
-  }
-  printer.printEnd(game.gen, game.avg);
-  results.push({
-    startingCells: numLiveCells,
-    avg: game.avg
-  });
 }
 
 results.sort((a, b) => b.avg - a.avg);
 printer.print(results[0].avg);
+
+
+//turn matrix into single array
+//for the filling:
+//  have always all but one fixed
+//  when the mobile reaches end
+//  move one of the other forward and restart
+//maybe have the dataset written before??
