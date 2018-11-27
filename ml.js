@@ -36,7 +36,6 @@ results.sort((a, b) => b.avg - a.avg);
 printer.print(results[0].avg);
 
 
-//turn matrix into single array
 //for the filling:
 //  have always all but one fixed
 //  when the mobile reaches end
